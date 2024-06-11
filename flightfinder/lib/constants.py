@@ -6,6 +6,10 @@ IBOM_AIR_URL = "https://book-ibomair.crane.aero/ibe/availability?tripType=ONE_WA
 
 NG_EAGLE_URL = "https://book-ngeagle.crane.aero/ibe/availability/?currency=NGN&lang=en&departureDate={departure_date}&returnDate=&depPort={origin}&arrPort={destination}&tripType=ONE_WAY&adult=1&child=0&infant=0"
 
+GREEN_AFRICA_URL = "https://middleware.greenafrica.com/api/booking/getDeepLink?from={origin}&to={destination}&start={departure_date}&adults=1&child=0&session_id=NppD+fXAhDlxp9X2HjvoejpAnr4eNiXSlk0JuDFODYhdoik0JJ&infant=0&currency=NGN&cabinCode=ECO"
+
+GREEN_AFRICA_DIRECT_LINK = "https://greenafrica.com/booking/select?origin={origin}&destination={destination}&departure={departure_date}&adt=1&chd=0&inf=0&promocode="
+
 originS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
