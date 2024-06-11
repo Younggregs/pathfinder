@@ -1,4 +1,5 @@
+from flightfinder.flights.mutations import FlightsMutation
 import graphene
 
 class Mutation(graphene.ObjectType):
-    pass
+    flights = FlightsMutation.Field()

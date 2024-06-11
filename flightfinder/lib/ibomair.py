@@ -3,8 +3,8 @@ from flightfinder.lib.constants import IBOM_AIR_URL
 import requests
 
 class IbomAir:
-    def __init__(self, date, location, destination):
-        self.url = IBOM_AIR_URL.format(location=location, destination=destination, departure_date=date)
+    def __init__(self, date, origin, destination):
+        self.url = IBOM_AIR_URL.format(origin=origin, destination=destination, departure_date=date)
         response = requests.get(self.url)
         self.soup = BeautifulSoup(response.text, 'html.parser')
         self.flights = []
@@ -39,7 +39,7 @@ class IbomAir:
             port_elements = mobile_route.find_all('span', class_='port')
 
             # Extract the text
-            location_string = port_elements[0].text if port_elements else None
+            origin_string = port_elements[0].text if port_elements else None
             destination_string = port_elements[1].text if len(port_elements) > 1 else None
             
             # Extract the cost
@@ -52,7 +52,7 @@ class IbomAir:
             
             return {
                 'flight_number': flight_number_string,
-                'location': location_string,
+                'origin': origin_string,
                 'destination': destination_string,
                 'departure_time': time_string,
                 'price': price_string,

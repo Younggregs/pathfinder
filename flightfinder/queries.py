@@ -8,19 +8,19 @@ import graphene
 
 class Query(graphene.ObjectType):
     """ Query class for the schema """
-    get_flights = graphene.Field(FlightResponseType, date=graphene.Argument(graphene.String, required=True), location=graphene.Argument(graphene.String, required=True), destination=graphene.Argument(graphene.String, required=True))
+    get_flights = graphene.Field(FlightResponseType, date=graphene.Argument(graphene.String, required=True), origin=graphene.Argument(graphene.String, required=True), destination=graphene.Argument(graphene.String, required=True))
     
-    def resolve_get_flights(self, info, date, location, destination):
+    def resolve_get_flights(self, info, date, origin, destination):
         """ Method to get flights """
         
         # Get flights concurrently
         with concurrent.futures.ThreadPoolExecutor() as executor:
             
-            arik_future = executor.submit(get_flights, Arik, date, location, destination)
+            arik_future = executor.submit(get_flights, Arik, date, origin, destination)
             
-            airpeace_future = executor.submit(get_flights, AirPeace, date, location, destination)
+            airpeace_future = executor.submit(get_flights, AirPeace, date, origin, destination)
             
-            ibomair_future = executor.submit(get_flights, IbomAir, date, location, destination)
+            ibomair_future = executor.submit(get_flights, IbomAir, date, origin, destination)
 
             arik_flights = arik_future.result()
             airpeace_flights = airpeace_future.result()

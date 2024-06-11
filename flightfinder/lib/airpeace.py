@@ -4,8 +4,8 @@ from flightfinder.lib.constants import AIRPEACE_URL
 
 
 class AirPeace:
-    def __init__(self, date, location, destination):
-        self.url = AIRPEACE_URL.format(location=location, destination=destination, departure_date=date)
+    def __init__(self, date, origin, destination):
+        self.url = AIRPEACE_URL.format(origin=origin, destination=destination, departure_date=date)
         content = self.get_html_content()
         self.soup = BeautifulSoup(content, 'html.parser')
         self.flights = []
@@ -51,7 +51,7 @@ class AirPeace:
             port_elements = mobile_route.find_all('span', class_='port')
 
             # Extract the text
-            location_string = port_elements[0].text if port_elements else None
+            origin_string = port_elements[0].text if port_elements else None
             destination_string = port_elements[1].text if len(port_elements) > 1 else None
             
             # Extract the cost
@@ -64,7 +64,7 @@ class AirPeace:
             
             return {
                 'flight_number': flight_number_string,
-                'location': location_string,
+                'origin': origin_string,
                 'destination': destination_string,
                 'departure_time': time_string,
                 'price': price_string,
