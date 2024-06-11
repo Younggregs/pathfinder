@@ -2,6 +2,7 @@ from flightfinder.flights.types import ErrorType, FlightResponseType, FlightType
 from flightfinder.lib.airpeace import AirPeace
 from flightfinder.lib.arik import Arik
 from flightfinder.lib.ibomair import IbomAir
+from flightfinder.lib.ng_eagle import NgEagle
 from flightfinder.lib.utils import get_flights
 import concurrent.futures
 import graphene
@@ -23,7 +24,8 @@ class FlightsMutation(graphene.Mutation):
             futures = {
                 executor.submit(get_flights, Arik, date, origin, destination): 'Arik',
                 executor.submit(get_flights, AirPeace, date, origin, destination): 'AirPeace',
-                executor.submit(get_flights, IbomAir, date, origin, destination): 'IbomAir'
+                executor.submit(get_flights, IbomAir, date, origin, destination): 'IbomAir',
+                executor.submit(get_flights, NgEagle, date, origin, destination): 'NgEagle'
             }
 
             results = []

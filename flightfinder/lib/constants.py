@@ -4,6 +4,8 @@ AIRPEACE_URL = "https://book-airpeace.crane.aero/ibe/availability?tripType=ONE_W
 
 IBOM_AIR_URL = "https://book-ibomair.crane.aero/ibe/availability?tripType=ONE_WAY&depPort={origin}&arrPort={destination}&departureDate={departure_date}&returnDate=&passengerQuantities%5B0%5D%5BpassengerType%5D=ADULT&passengerQuantities%5B0%5D%5BpassengerSubType%5D=&passengerQuantities%5B0%5D%5Bquantity%5D=1&passengerQuantities%5B1%5D%5BpassengerType%5D=CHILD&passengerQuantities%5B1%5D%5BpassengerSubType%5D=&passengerQuantities%5B1%5D%5Bquantity%5D=0&passengerQuantities%5B2%5D%5BpassengerType%5D=INFANT&passengerQuantities%5B2%5D%5BpassengerSubType%5D=&passengerQuantities%5B2%5D%5Bquantity%5D=0&currency=NGN&cabinClass=&lang=EN&nationality=&promoCode=&accountCode=&affiliateCode=&clickId=&withCalendar=&isMobileCalendar=&market=&isFFPoint="
 
+NG_EAGLE_URL = "https://book-ngeagle.crane.aero/ibe/availability/?currency=NGN&lang=en&departureDate={departure_date}&returnDate=&depPort={origin}&arrPort={destination}&tripType=ONE_WAY&adult=1&child=0&infant=0"
+
 originS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
