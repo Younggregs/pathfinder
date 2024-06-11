@@ -20,25 +20,24 @@ class FlightsMutation(graphene.Mutation):
         # Get flights concurrently
         with concurrent.futures.ThreadPoolExecutor() as executor:
             
-            arik_future = executor.submit(get_flights, Arik, date, origin, destination)
-            
-            airpeace_future = executor.submit(get_flights, AirPeace, date, origin, destination)
-            
-            ibomair_future = executor.submit(get_flights, IbomAir, date, origin, destination)
+            futures = {
+                executor.submit(get_flights, Arik, date, origin, destination): 'Arik',
+                executor.submit(get_flights, AirPeace, date, origin, destination): 'AirPeace',
+                executor.submit(get_flights, IbomAir, date, origin, destination): 'IbomAir'
+            }
 
-            arik_flights = arik_future.result()
-            airpeace_flights = airpeace_future.result()
-            ibomair_flights = ibomair_future.result()
-
-        flights = []
-        if arik_flights:
-            flights.extend(arik_flights)
-        if airpeace_flights:
-            flights.extend(airpeace_flights)
-        if ibomair_flights:
-            flights.extend(ibomair_flights)
-        
-        print('Flights:', flights)
+            results = []
+            
+            for future in concurrent.futures.as_completed(futures):
+                airline = futures[future]
+                try:
+                    flights = future.result()
+                    # Process flights here
+                    results.extend(flights)
+                except Exception as e:
+                    print(f"An error occurred while getting flights for {airline}: {e}")
+                    
+        flights = results
         
         # Convert each flight in the list to a FlightType object
         flights = [FlightType(
