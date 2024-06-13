@@ -10,6 +10,8 @@ GREEN_AFRICA_URL = "https://middleware.greenafrica.com/api/booking/getDeepLink?f
 
 GREEN_AFRICA_DIRECT_LINK = "https://greenafrica.com/booking/select?origin={origin}&destination={destination}&departure={departure_date}&adt=1&chd=0&inf=0&promocode="
 
+VALUE_JET_URL = "https://flyvaluejet.com/flight-result?requestInfo=dep:%27{origin}%27,arr:%27{destination}%27,on:%27{departure_date}%27,till:%27%27,p.a:1,p.c:0,p.i:0"
+
 originS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
