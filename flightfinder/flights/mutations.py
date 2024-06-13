@@ -6,6 +6,7 @@ from flightfinder.lib.ibomair import IbomAir
 from flightfinder.lib.ng_eagle import NgEagle
 from flightfinder.lib.utils import get_flights
 import concurrent.futures
+from flightfinder.lib.valuejet import ValueJet
 import graphene
 
 class FlightsMutation(graphene.Mutation):
@@ -31,7 +32,9 @@ class FlightsMutation(graphene.Mutation):
                 
                 executor.submit(get_flights, NgEagle, date, origin, destination): 'NgEagle',
                 
-                executor.submit(get_flights, GreenAfrica, date, origin, destination): 'GreenAfrica'
+                executor.submit(get_flights, GreenAfrica, date, origin, destination): 'GreenAfrica',
+                
+                executor.submit(get_flights, ValueJet, date, origin, destination): 'ValueJet'
             }
 
             results = []
