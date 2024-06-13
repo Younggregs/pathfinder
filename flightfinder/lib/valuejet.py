@@ -1,3 +1,4 @@
+from datetime import datetime
 from bs4 import BeautifulSoup, Tag
 from flightfinder.lib.utils import format_date_with_dash
 from playwright.sync_api import sync_playwright
@@ -52,18 +53,24 @@ class ValueJet:
             origin = origin_string.split('\n')[0]
             
             time_string = origin_element[2].text if origin_element else None
+            am_pm_string = origin_element[3].text if origin_element else None
+        
+            formatted_time_am_pm = time_string.strip() + am_pm_string.strip()
+            time_24hr = datetime.strptime(formatted_time_am_pm, "%I:%M%p").strftime("%H:%M")
             
             destination_element = port_elements[1].find_all('span')
             destination_string = destination_element[0].text if destination_element else None
             
-            price_element = item.find('button').text
+            price_string = item.find('button').text
+            if price_string is None:
+                raise ValueError("Price element cannot be None")
             
             return {
                 'flight_number': flight_number_string.strip(),
                 'origin': origin.strip(),
                 'destination': destination_string.strip(),
-                'departure_time': time_string.strip(),
-                'price': price_element.strip(),
+                'departure_time': time_24hr,
+                'price': price_string.strip(),
                 'airline': self.name,
                 'url': self.url
             }
