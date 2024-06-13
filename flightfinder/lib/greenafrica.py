@@ -1,6 +1,7 @@
 from datetime import datetime
 import requests
 from flightfinder.lib.constants import GREEN_AFRICA_DIRECT_LINK, GREEN_AFRICA_URL
+from flightfinder.lib.utils import format_date_with_dash
 
 
 class GreenAfrica:
@@ -18,7 +19,7 @@ class GreenAfrica:
         self.direct_link = GREEN_AFRICA_DIRECT_LINK.format(
             origin=origin, 
             destination=destination, 
-            departure_date=self.format_date_with_dash(date)
+            departure_date=format_date_with_dash(date)
         )
         self.flight_list = flights['flight']
         self.flight_bucket = []
@@ -27,11 +28,6 @@ class GreenAfrica:
     def format_date(self, date_string):
         datetime_object = datetime.strptime(date_string, "%d.%m.%Y")
         formatted_date = datetime_object.strftime("%Y/%m/%d")
-        return formatted_date
-    
-    def format_date_with_dash(self, date_string):
-        datetime_object = datetime.strptime(date_string, "%d.%m.%Y")
-        formatted_date = datetime_object.strftime("%Y-%m-%d")
         return formatted_date
 
     def getPrice(self, classes):
