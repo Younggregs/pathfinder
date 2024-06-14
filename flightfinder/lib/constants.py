@@ -14,6 +14,8 @@ VALUE_JET_URL = "https://flyvaluejet.com/flight-result?requestInfo=dep:%27{origi
 
 UNITED_NIGERIA_URL = "https://booking.flyunitednigeria.com/VARS/Public/CustomerPanels/requirementsBS.aspx"
 
+MAX_URL = "https://customer2.videcom.com/MaxAir/VARS/Public/CustomerPanels/requirementsBS.aspx"
+
 LOCATIONS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
