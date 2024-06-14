@@ -5,6 +5,7 @@ from flightfinder.lib.greenafrica import GreenAfrica
 from flightfinder.lib.ibomair import IbomAir
 from flightfinder.lib.max import Max
 from flightfinder.lib.ng_eagle import NgEagle
+from flightfinder.lib.rano import Rano
 from flightfinder.lib.unitednigeria import UnitedNigeria
 from flightfinder.lib.utils import get_flights
 import concurrent.futures
@@ -40,7 +41,9 @@ class FlightsMutation(graphene.Mutation):
                 
                 executor.submit(get_flights, UnitedNigeria, date, origin, destination): 'UnitedNigeria',
                 
-                executor.submit(get_flights, Max, date, origin, destination): 'Max'
+                executor.submit(get_flights, Max, date, origin, destination): 'Max',
+                
+                executor.submit(get_flights, Rano, date, origin, destination): 'Rano',
             }
 
             results = []
