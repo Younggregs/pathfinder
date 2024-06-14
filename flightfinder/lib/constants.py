@@ -16,6 +16,8 @@ UNITED_NIGERIA_URL = "https://booking.flyunitednigeria.com/VARS/Public/CustomerP
 
 MAX_URL = "https://customer2.videcom.com/MaxAir/VARS/Public/CustomerPanels/requirementsBS.aspx"
 
+RANO_URL = "https://customer3.videcom.com/RanoAir/VARS/Public/CustomerPanels/requirementsBS.aspx"
+
 LOCATIONS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
