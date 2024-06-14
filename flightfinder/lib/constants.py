@@ -12,7 +12,9 @@ GREEN_AFRICA_DIRECT_LINK = "https://greenafrica.com/booking/select?origin={origi
 
 VALUE_JET_URL = "https://flyvaluejet.com/flight-result?requestInfo=dep:%27{origin}%27,arr:%27{destination}%27,on:%27{departure_date}%27,till:%27%27,p.a:1,p.c:0,p.i:0"
 
-originS = [
+UNITED_NIGERIA_URL = "https://booking.flyunitednigeria.com/VARS/Public/CustomerPanels/requirementsBS.aspx"
+
+LOCATIONS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},
     {"name": "Akure", "code": "AKR"},
