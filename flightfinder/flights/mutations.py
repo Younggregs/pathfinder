@@ -66,6 +66,7 @@ class FlightsMutation(graphene.Mutation):
             destination=flight['destination'],
             departure_time=flight['departure_time'],
             price=flight['price'],
+            currency=flight['currency'],
             airline=flight['airline'],
             url=flight['url']
         ) for flight in flights]
