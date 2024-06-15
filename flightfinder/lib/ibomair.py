@@ -46,16 +46,23 @@ class IbomAir:
             try: 
                 price_element = item.find('span', class_='price-text-single-line')
                 price_string = price_element.text
-            except Exception as e:
-                price_element = item.find('span', class_='price-best-offer')
-                price_string = price_element.text
-            
+            except Exception:
+                try:
+                    price_element = item.find('span', class_='price-best-offer')
+                    price_string = price_element.text
+                except Exception:
+                    price_string = '-1'
+                    
+            if price_string != '-1':
+                price_string = price_string.replace('₦', '').replace(',', '')
+                
             return {
                 'flight_number': flight_number_string,
                 'origin': origin_string,
                 'destination': destination_string,
                 'departure_time': time_string,
-                'price': price_string,
+                'price': price_string.strip(),
+                'currency': '₦',
                 'airline': self.name,
                 'url': self.url
             }

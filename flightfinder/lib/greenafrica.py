@@ -65,18 +65,20 @@ class GreenAfrica:
                 try:
                     price = self.getPrice(classes)
                 except Exception as e:
-                    print ('price error: ', e)
+                    pass
+                    
+                price_string = '-1' if not price else price.replace('NGN', '')
                 
-                if price:
-                    self.flight_bucket.append({
-                        'flight_number': code,
-                        'origin': origin,
-                        'destination': destination,
-                        'departure_time': formatted_time,
-                        'price': price,
-                        'airline': self.name,
-                        'url': self.direct_link
-                    })
+                self.flight_bucket.append({
+                    'flight_number': code,
+                    'origin': origin,
+                    'destination': destination,
+                    'departure_time': formatted_time,
+                    'price': price_string.strip(),
+                    'currency': '₦',
+                    'airline': self.name,
+                    'url': self.direct_link
+                })
                     
                     
             except Exception as e:

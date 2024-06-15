@@ -63,7 +63,9 @@ class ValueJet:
             
             price_string = item.find('button').text
             if price_string is None:
-                raise ValueError("Price element cannot be None")
+                price_string = '-1'
+            else:
+                price_string = price_string.replace('₦', '').replace(',','')
             
             return {
                 'flight_number': flight_number_string.strip(),
@@ -71,6 +73,7 @@ class ValueJet:
                 'destination': destination_string.strip(),
                 'departure_time': time_24hr,
                 'price': price_string.strip(),
+                'currency': '₦',
                 'airline': self.name,
                 'url': self.url
             }

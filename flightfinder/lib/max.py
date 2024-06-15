@@ -115,14 +115,17 @@ class Max:
             
             price_string = item.find('div', class_='fare-price-small').text
             if price_string is None or price_string.strip() == 'Sold out':
-                raise ValueError("Price element cannot be None")
+                price_string = '-1'
+                
+            price = '-1' if not price_string else price_string.replace('NGN', '').replace(',','')
             
             return {
                 'flight_number': flight_number_string.strip(),
                 'origin': origin_string.strip(),
                 'destination': destination_string.strip(),
                 'departure_time': time_string.strip(),
-                'price': price_string.strip(),
+                'price': price.strip(),
+                'currency': '₦',
                 'airline': self.name,
                 'url': self.url
             }
