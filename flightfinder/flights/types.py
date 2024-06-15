@@ -7,6 +7,7 @@ class FlightType(graphene.ObjectType):
     destination = graphene.String()
     departure_time = graphene.String()
     price = graphene.String()
+    currency = graphene.String()
     airline = graphene.String()
     url = graphene.String()
     
