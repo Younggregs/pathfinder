@@ -53,3 +53,6 @@ data/
 
 # Environment files.
 *.env
+
+# static files
+pathfinder/static/

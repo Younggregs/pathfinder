@@ -1,7 +1,9 @@
 import graphene
 
+
 class FlightType(graphene.ObjectType):
-    """ Flight type """
+    """Flight type"""
+
     flight_number = graphene.String()
     origin = graphene.String()
     destination = graphene.String()
@@ -10,11 +12,15 @@ class FlightType(graphene.ObjectType):
     currency = graphene.String()
     airline = graphene.String()
     url = graphene.String()
-    
+    created_at = graphene.String()
+
+
 class FlightResponseType(graphene.ObjectType):
-    """ Flight response type """
+    """Flight response type"""
+
     flights = graphene.List(FlightType)
     total = graphene.Int()
-    
+
+
 class ErrorType(graphene.ObjectType):
     message = graphene.String()

@@ -1,34 +1,75 @@
-from flightfinder.flights.types import FlightResponseType
-from flightfinder.lib.airpeace import AirPeace
-from flightfinder.lib.arik import Arik
-from flightfinder.lib.ibomair import IbomAir
-from flightfinder.lib.utils import get_flights
-import concurrent.futures
+from flightfinder.constants.abuja import ABUJA
+from flightfinder.constants.lagos import LAGOS
+from flightfinder.flights.types import FlightResponseType, FlightType
+from flightfinder.lib.utils import format_date_with_dash
+from flightfinder.models import Airline, Airport, Flight, JourneyPath
 import graphene
 
+
 class Query(graphene.ObjectType):
-    """ Query class for the schema """
-    get_flights = graphene.Field(FlightResponseType, date=graphene.Argument(graphene.String, required=True), origin=graphene.Argument(graphene.String, required=True), destination=graphene.Argument(graphene.String, required=True))
-    
+    """Query class for the schema"""
+
+    get_flights = graphene.Field(
+        FlightResponseType,
+        date=graphene.Argument(graphene.String, required=True),
+        origin=graphene.Argument(graphene.String, required=True),
+        destination=graphene.Argument(graphene.String, required=True),
+    )
+
     def resolve_get_flights(self, info, date, origin, destination):
-        """ Method to get flights """
-        
-        # Get flights concurrently
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            
-            arik_future = executor.submit(get_flights, Arik, date, origin, destination)
-            
-            airpeace_future = executor.submit(get_flights, AirPeace, date, origin, destination)
-            
-            ibomair_future = executor.submit(get_flights, IbomAir, date, origin, destination)
+        print("Start control")
+        airports = Airport.objects.all()
+        airlines = Airline.objects.all()
 
-            arik_flights = arik_future.result()
-            airpeace_flights = airpeace_future.result()
-            ibomair_flights = ibomair_future.result()
+        airports_dict = {airport.code: airport for airport in airports}
 
-        flights = arik_flights + airpeace_flights + ibomair_flights
-        
-        return {
-            'flights': flights,
-            'total': len(flights)
-        }
+        airlines_dict = {airline.slug: airline for airline in airlines}
+
+        journey_paths = []
+        origin = airports_dict.get("ABV")
+        for i, v in enumerate(ABUJA):
+            try:
+                destination = airports_dict.get(v["name"])
+                for airline in v["airlines"]:
+                    airline_instance = airlines_dict.get(airline)
+                    journey_paths.append(
+                        JourneyPath(
+                            origin=origin,
+                            destination=destination,
+                            airline=airline_instance,
+                        )
+                    )
+            except Exception as e:
+                print(f"An error occurred while creating journey paths: {e}")
+
+        JourneyPath.objects.bulk_create(journey_paths)
+        print("journey_paths", journey_paths)
+
+        # origin_instance = Airport.objects.get(code=origin)
+        # destination_instance = Airport.objects.get(code=destination)
+
+        # journey_paths = JourneyPath.objects.filter(
+        #     origin=origin_instance.id, destination=destination_instance.id
+        # )
+
+        # journey_paths_ids = [journey_path.id for journey_path in journey_paths]
+
+        # flight_instances = Flight.objects.filter(
+        #     journey_path__in=journey_paths_ids, date=format_date_with_dash(date)
+        # )
+
+        # flights = [
+        #     FlightType(
+        #         flight_number=flight.flight_number,
+        #         origin=flight.journey_path.origin.name,
+        #         destination=flight.journey_path.destination.name,
+        #         departure_time=flight.departure_time,
+        #         price=flight.price,
+        #         currency=flight.currency,
+        #         airline=flight.journey_path.airline.slug,
+        #         url=flight.url,
+        #     )
+        #     for flight in flight_instances
+        # ]
+
+        return FlightResponseType(flights=[], total=len(journey_paths))

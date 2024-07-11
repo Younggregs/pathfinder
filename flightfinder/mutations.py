@@ -1,5 +1,8 @@
-from flightfinder.flights.mutations import FlightsMutation
+from flightfinder.flights.find_mutations import FindFlightsMutation
+from flightfinder.flights.get_mutations import GetFlightsMutation
 import graphene
 
+
 class Mutation(graphene.ObjectType):
-    flights = FlightsMutation.Field()
+    findFlights = FindFlightsMutation.Field()
+    getFlights = GetFlightsMutation.Field()
