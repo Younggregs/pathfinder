@@ -57,3 +57,18 @@ class Flight(BaseModel):
 
     def __str__(self):
         return f"{self.journey_path.origin.name} to {self.journey_path.destination.name} - {self.journey_path.airline.name} - {self.date}"
+
+
+class CachePath(BaseModel):
+    origin = models.ForeignKey(
+        Airport, on_delete=models.CASCADE, related_name="origin_caches"
+    )
+    destination = models.ForeignKey(
+        Airport, on_delete=models.CASCADE, related_name="destination_caches"
+    )
+
+    def __str__(self):
+        return f"{self.origin.name} to {self.destination.name}"
+
+    class Meta:
+        unique_together = ("origin", "destination")
