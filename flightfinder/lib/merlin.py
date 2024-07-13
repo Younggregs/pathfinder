@@ -21,10 +21,10 @@ from django.utils import timezone
 
 
 class Merlin:
-    def __init__(self, origin, destination, date):
+    def __init__(self, origin, destination, date_string):
         self.origin = origin
         self.destination = destination
-        self.date = date
+        self.date = date_string
         self.journey_paths = []
         self.flights = []
 
