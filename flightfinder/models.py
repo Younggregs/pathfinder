@@ -58,6 +58,9 @@ class Flight(BaseModel):
     def __str__(self):
         return f"{self.journey_path.origin.name} to {self.journey_path.destination.name} - {self.journey_path.airline.name} - {self.date}"
 
+    class Meta:
+        ordering = ["departure_time"]
+
 
 class CachePath(BaseModel):
     origin = models.ForeignKey(

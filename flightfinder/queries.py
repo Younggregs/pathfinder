@@ -1,4 +1,14 @@
 from flightfinder.constants.abuja import ABUJA
+from flightfinder.constants.grouped_a import (
+    BAUCHI,
+    IBADAN,
+    JOHANNESBURG,
+    JOS,
+    KADUNA,
+    KATSINA,
+    LOME,
+    YENGEGOA,
+)
 from flightfinder.constants.lagos import LAGOS
 from flightfinder.flights.types import FlightResponseType, FlightType
 from flightfinder.lib.utils import format_date_with_dash
@@ -19,39 +29,33 @@ class Query(graphene.ObjectType):
 
     def resolve_get_flights(self, info, date, origin, destination):
         print("Start control")
-        try:
-            cache_flights.apply()
-        except Exception as e:
-            print("Error: ", e)
 
-        print("End control")
+        airports = Airport.objects.all()
+        airlines = Airline.objects.all()
 
-        # airports = Airport.objects.all()
-        # airlines = Airline.objects.all()
+        airports_dict = {airport.code: airport for airport in airports}
 
-        # airports_dict = {airport.code: airport for airport in airports}
-
-        # airlines_dict = {airline.slug: airline for airline in airlines}
+        airlines_dict = {airline.slug: airline for airline in airlines}
 
         journey_paths = []
-        # origin = airports_dict.get("ABV")
-        # for i, v in enumerate(ABUJA):
-        #     try:
-        #         destination = airports_dict.get(v["name"])
-        #         for airline in v["airlines"]:
-        #             airline_instance = airlines_dict.get(airline)
-        #             journey_paths.append(
-        #                 JourneyPath(
-        #                     origin=origin,
-        #                     destination=destination,
-        #                     airline=airline_instance,
-        #                 )
-        #             )
-        #     except Exception as e:
-        #         print(f"An error occurred while creating journey paths: {e}")
+        origin = airports_dict.get("LFW")
+        for i, v in enumerate(LOME):
+            try:
+                destination = airports_dict.get(v["name"])
+                for airline in v["airlines"]:
+                    airline_instance = airlines_dict.get(airline)
+                    journey_paths.append(
+                        JourneyPath(
+                            origin=origin,
+                            destination=destination,
+                            airline=airline_instance,
+                        )
+                    )
+            except Exception as e:
+                print(f"An error occurred while creating journey paths: {e}")
 
-        # JourneyPath.objects.bulk_create(journey_paths)
-        # print("journey_paths", journey_paths)
+        JourneyPath.objects.bulk_create(journey_paths)
+        print("journey_paths", journey_paths)
 
         # origin_instance = Airport.objects.get(code=origin)
         # destination_instance = Airport.objects.get(code=destination)
