@@ -29,9 +29,9 @@ def cache_flights():
 
 
 app.conf.beat_schedule = {
-    "run-cache-flights-every-12-hours": {
+    "run-cache-flights-every-8-hours": {
         "task": "flightfinder.tasks.cache_flights",
-        "schedule": timedelta(hours=12),
+        "schedule": timedelta(hours=8),
     },
 }
 app.conf.timezone = "UTC"
