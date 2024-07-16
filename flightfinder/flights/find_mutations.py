@@ -1,6 +1,5 @@
 from flightfinder.flights.types import ErrorType, FlightResponseType, FlightType
 from flightfinder.lib.merlin import Merlin
-from flightfinder.lib.utils import formate_time_string_to_date
 import graphene
 
 
@@ -31,7 +30,8 @@ class FindFlightsMutation(graphene.Mutation):
                 departure_time=flight.departure_time,
                 price=flight.price,
                 currency=flight.currency,
-                airline=flight.journey_path.airline.slug,
+                airline_slug=flight.journey_path.airline.slug,
+                airline_name=flight.journey_path.airline.name,
                 url=flight.url,
                 created_at=flight.created_at,
             )

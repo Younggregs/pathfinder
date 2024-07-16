@@ -36,7 +36,8 @@ class GetFlightsMutation(graphene.Mutation):
                 departure_time=flight.departure_time,
                 price=flight.price,
                 currency=flight.currency,
-                airline=flight.journey_path.airline.slug,
+                airline_slug=flight.journey_path.airline.slug,
+                airline_name=flight.journey_path.airline.name,
                 url=flight.url,
                 created_at=flight.created_at,
             )
