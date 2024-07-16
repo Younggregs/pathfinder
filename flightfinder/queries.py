@@ -1,4 +1,5 @@
-from flightfinder.constants.grouped_b import ASABA, BENIN, ENUGU, KANO
+from flightfinder.constants.accra import ACCRA
+from flightfinder.constants.douala import DAKAR, DOUALA, FREETOWN
 from flightfinder.flights.types import FlightResponseType, FlightType
 from flightfinder.lib.utils import format_date_with_dash
 from flightfinder.models import Airline, Airport, Flight, JourneyPath
@@ -27,8 +28,8 @@ class Query(graphene.ObjectType):
         airlines_dict = {airline.slug: airline for airline in airlines}
 
         journey_paths = []
-        origin = airports_dict.get("ENU")
-        for i, v in enumerate(ENUGU):
+        origin = airports_dict.get("FNA")
+        for i, v in enumerate(FREETOWN):
             try:
                 destination = airports_dict.get(v["name"])
                 for airline in v["airlines"]:

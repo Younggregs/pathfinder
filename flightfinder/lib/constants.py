@@ -28,6 +28,7 @@ LOCATIONS = [
     {"name": "Benin", "code": "BNI"},
     {"name": "Birnin Kebbi", "code": "DNBK"},
     {"name": "Calabar", "code": "CBQ"},
+    {"name": "Dutse", "code": "DNDS"},
     {"name": "Enugu", "code": "ENU"},
     {"name": "Gombe", "code": "GMO"},
     {"name": "Ibadan", "code": "IBA"},

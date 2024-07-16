@@ -133,3 +133,137 @@ ENUGU = [
         "airlines": ["air_peace"],
     },
 ]
+
+BIRNIN_KEBBI = [
+    {
+        "name": "LOS",
+        "airlines": ["ng_eagle"],
+    },
+    {
+        "name": "ABV",
+        "airlines": ["max_air", "ng_eagle"],
+    },
+    {
+        "name": "SKO",
+        "airlines": ["ng_eagle"],
+    },
+    {
+        "name": "YOL",
+        "airlines": ["ng_eagle"],
+    },
+]
+
+GOMBE = [
+    {
+        "name": "LOS",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ABV",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ACC",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "LGW",
+        "airlines": ["air_peace"],
+    },
+]
+
+JEDDAH = [
+    {
+        "name": "ILR",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "PHC",
+        "airlines": ["air_peace"],
+    },
+]
+
+ILORIN = [
+    {
+        "name": "LOS",
+        "airlines": ["air_peace", "green_africa"],
+    },
+    {
+        "name": "ABV",
+        "airlines": ["air_peace", "green_africa"],
+    },
+    {
+        "name": "ACC",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "LGW",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ROB",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "DLA",
+        "airlines": ["air_peace"],
+    },
+]
+
+MAIDUGURI = [
+    {
+        "name": "LOS",
+        "airlines": ["air_peace", "max_air"],
+    },
+    {
+        "name": "ABV",
+        "airlines": ["air_peace", "max_air", "rano_air"],
+    },
+    {
+        "name": "ACC",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "KAN",
+        "airlines": ["max_air"],
+    },
+    {
+        "name": "DLA",
+        "airlines": ["air_peace"],
+    },
+]
+
+MAKURDI = [
+    {
+        "name": "LOS",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ABV",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ACC",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "FNA",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "DLA",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "LGW",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "ROB",
+        "airlines": ["air_peace"],
+    },
+    {
+        "name": "DSS",
+        "airlines": ["air_peace"],
+    },
+]
