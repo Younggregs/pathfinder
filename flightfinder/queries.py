@@ -1,15 +1,4 @@
-from flightfinder.constants.abuja import ABUJA
-from flightfinder.constants.grouped_a import (
-    BAUCHI,
-    IBADAN,
-    JOHANNESBURG,
-    JOS,
-    KADUNA,
-    KATSINA,
-    LOME,
-    YENGEGOA,
-)
-from flightfinder.constants.lagos import LAGOS
+from flightfinder.constants.grouped_b import ASABA, BENIN, ENUGU, KANO
 from flightfinder.flights.types import FlightResponseType, FlightType
 from flightfinder.lib.utils import format_date_with_dash
 from flightfinder.models import Airline, Airport, Flight, JourneyPath
@@ -38,8 +27,8 @@ class Query(graphene.ObjectType):
         airlines_dict = {airline.slug: airline for airline in airlines}
 
         journey_paths = []
-        origin = airports_dict.get("LFW")
-        for i, v in enumerate(LOME):
+        origin = airports_dict.get("ENU")
+        for i, v in enumerate(ENUGU):
             try:
                 destination = airports_dict.get(v["name"])
                 for airline in v["airlines"]:
