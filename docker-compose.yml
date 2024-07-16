@@ -4,8 +4,8 @@ services:
     ports:
       - "6379:6379"
     restart: always
-    networks:
-      - internal
+    # expose:
+    #  - "6379"
   web:
     build: .
     command: gunicorn pathfinder.wsgi:application --workers=5 --bind 0.0.0.0:8000
@@ -15,8 +15,6 @@ services:
       - "8000:8000"
     depends_on:
       - redis
-    networks:
-      - internal
   celery:
     build: .
     command: celery -A pathfinder worker -l info
@@ -24,8 +22,3 @@ services:
       - .:/code
     depends_on:
       - redis
-    networks:
-      - internal
-  networks:
-    internal:
-      driver: bridge
