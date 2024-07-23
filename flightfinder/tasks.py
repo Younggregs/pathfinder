@@ -24,7 +24,7 @@ def cache_flights():
             merlin.abracadabra()
             merlin.persist_magic()
 
-            # Delay for 1 minute after each iteration
+            # Delay for 90 seconds after each iteration
             time.sleep(90)
 
 
