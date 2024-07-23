@@ -8,7 +8,7 @@ services:
     #  - "6379"
   web:
     build: .
-    command: gunicorn pathfinder.wsgi:application --workers=5 --bind 0.0.0.0:8000
+    command: gunicorn pathfinder.wsgi:application --workers=3 --bind 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
