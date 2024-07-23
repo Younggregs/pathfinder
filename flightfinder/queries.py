@@ -19,33 +19,37 @@ class Query(graphene.ObjectType):
 
     def resolve_get_flights(self, info, date, origin, destination):
         print("Start control")
+        try:
+            cache_flights.apply()
+        except Exception as e:
+            print(f"An error occurred while caching flights: {e}")
 
-        airports = Airport.objects.all()
-        airlines = Airline.objects.all()
+        # airports = Airport.objects.all()
+        # airlines = Airline.objects.all()
 
-        airports_dict = {airport.code: airport for airport in airports}
+        # airports_dict = {airport.code: airport for airport in airports}
 
-        airlines_dict = {airline.slug: airline for airline in airlines}
+        # airlines_dict = {airline.slug: airline for airline in airlines}
 
-        journey_paths = []
-        origin = airports_dict.get("FNA")
-        for i, v in enumerate(FREETOWN):
-            try:
-                destination = airports_dict.get(v["name"])
-                for airline in v["airlines"]:
-                    airline_instance = airlines_dict.get(airline)
-                    journey_paths.append(
-                        JourneyPath(
-                            origin=origin,
-                            destination=destination,
-                            airline=airline_instance,
-                        )
-                    )
-            except Exception as e:
-                print(f"An error occurred while creating journey paths: {e}")
+        # journey_paths = []
+        # origin = airports_dict.get("FNA")
+        # for i, v in enumerate(FREETOWN):
+        #     try:
+        #         destination = airports_dict.get(v["name"])
+        #         for airline in v["airlines"]:
+        #             airline_instance = airlines_dict.get(airline)
+        #             journey_paths.append(
+        #                 JourneyPath(
+        #                     origin=origin,
+        #                     destination=destination,
+        #                     airline=airline_instance,
+        #                 )
+        #             )
+        #     except Exception as e:
+        #         print(f"An error occurred while creating journey paths: {e}")
 
-        JourneyPath.objects.bulk_create(journey_paths)
-        print("journey_paths", journey_paths)
+        # JourneyPath.objects.bulk_create(journey_paths)
+        # print("journey_paths", journey_paths)
 
         # origin_instance = Airport.objects.get(code=origin)
         # destination_instance = Airport.objects.get(code=destination)
@@ -74,4 +78,4 @@ class Query(graphene.ObjectType):
         #     for flight in flight_instances
         # ]
 
-        return FlightResponseType(flights=[], total=len(journey_paths))
+        return FlightResponseType(flights=[], total=0)
