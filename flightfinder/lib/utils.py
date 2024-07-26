@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.utils import timezone
 
 
 def get_flights(airline, date, origin, destination):
@@ -22,7 +23,7 @@ def formate_time_string_to_date(time_string, date_string):
     # Combine the date and time into a datetime object
     datetime_object = datetime.combine(date_object, parsed_time)
 
-    return datetime_object
+    return timezone.make_aware(datetime_object)
 
 
 def get_location_code(locations, name):
