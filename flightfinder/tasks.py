@@ -24,14 +24,14 @@ def cache_flights():
             merlin.abracadabra()
             merlin.persist_magic()
 
-            # Delay for 90 seconds after each iteration
-            time.sleep(90)
+            # Delay for 30 seconds after each iteration
+            time.sleep(30)
 
 
 app.conf.beat_schedule = {
-    "run-cache-flights-every-8-hours": {
+    "run-cache-flights-every-4-hours": {
         "task": "flightfinder.tasks.cache_flights",
-        "schedule": timedelta(hours=8),
+        "schedule": timedelta(hours=4),
     },
 }
 app.conf.timezone = "UTC"
