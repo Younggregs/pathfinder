@@ -32,8 +32,8 @@ admin.site.register(JourneyPath, JourneyPathAdmin)
 
 
 class FlightAdmin(admin.ModelAdmin):
-    list_display = ["flight_number", "price", "departure_time"]
-    search_fields = ("flight_number", "price", "departure_time")
+    list_display = ["flight_number", "price", "date"]
+    search_fields = ("flight_number", "price", "date")
     ordering = ("flight_number",)
 
 
