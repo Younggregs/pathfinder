@@ -70,7 +70,7 @@ class ValueJet:
             )
 
             price_string = item.find("button").text
-            if price_string is None:
+            if price_string is None or price_string.strip().lower() == "sold out":
                 price_string = "-1"
             else:
                 price_string = price_string.replace("₦", "").replace(",", "")

@@ -117,7 +117,7 @@ class UnitedNigeria:
             )
 
             price_string = item.find("div", class_="price-display-ngn").text
-            if price_string is None or price_string.strip() == "Sold out":
+            if price_string is None or price_string.strip().lower() == "sold out":
                 price_string = "-1"
 
             price = (

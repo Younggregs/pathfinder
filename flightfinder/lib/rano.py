@@ -117,7 +117,7 @@ class Rano:
             )
 
             price_string = item.find("div", class_="fare-price-small").text
-            if price_string is None or price_string.strip() == "Sold out":
+            if price_string is None or price_string.strip().lower() == "sold out":
                 price_string = "-1"
 
             price = (

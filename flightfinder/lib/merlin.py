@@ -18,6 +18,9 @@ from flightfinder.lib.valuejet import ValueJet
 from flightfinder.models import Flight, JourneyPath
 
 from django.utils import timezone
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Merlin:
@@ -59,7 +62,9 @@ class Merlin:
                     # Process flights here
                     results.extend(flights)
                 except Exception as e:
-                    print(f"An error occurred while getting flights for {airline}: {e}")
+                    logger.debug(
+                        "An error occurred while getting flights for %s: %s", airline, e
+                    )
 
         self.flights = results
 
@@ -87,7 +92,7 @@ class Merlin:
                 if self.find_journey_path_by_slug(flight["airline"])
             ]
         except Exception as e:
-            print("An error occurred while preparing flights instances: ", e)
+            logger.debug("An error occurred while preparing flights instances: %s", e)
             return []
 
         unique_journey_path_ids = {
@@ -102,12 +107,12 @@ class Merlin:
             )
             flights_to_delete.delete()
         except Exception as e:
-            print("An error occurred while deleting existing flights: ", e)
+            logger.debug("An error occurred while deleting existing flights: %s", e)
 
         try:
             Flight.objects.bulk_create(flights_instances)
         except Exception as e:
-            print("An error occurred while creating flights: ", e)
+            logger.debug("An error occurred while creating flights: %s", e)
             return []
 
         journey_path_ids = [path.id for path in self.journey_paths]
