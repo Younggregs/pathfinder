@@ -115,6 +115,26 @@ PASSWORD_HASHERS = (
     "django.contrib.auth.hashers.MD5PasswordHasher",
 )
 
+# Logging configuration
+LOGGING = {
+    "version": 1,  # the dictConfig format version
+    "disable_existing_loggers": False,  # retain the default loggers
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "general.log",
+            "level": "DEBUG",
+        },
+    },
+    "loggers": {
+        "": {  # root logger
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
