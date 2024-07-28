@@ -17,7 +17,7 @@ services:
       - redis
   celery:
     build: .
-    command: celery -A pathfinder worker -l info
+    command: celery -A pathfinder worker --beat --loglevel=info
     volumes:
       - .:/code
     depends_on:

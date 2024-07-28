@@ -28,8 +28,8 @@ def cache_flights():
                 merlin.abracadabra()
                 merlin.persist_magic()
 
-                # Delay for 30 seconds after each iteration
-                time.sleep(30)
+                # Delay for 5 seconds after each iteration
+                time.sleep(5)
             except Exception as e:
                 logger.debug("Error running cache flights: %s", e)
                 continue
@@ -38,7 +38,7 @@ def cache_flights():
 app.conf.beat_schedule = {
     "run-cache-flights-every-4-hours": {
         "task": "flightfinder.tasks.cache_flights",
-        "schedule": timedelta(hours=4),
+        "schedule": timedelta(hours=10),
     },
 }
 app.conf.timezone = "UTC"
