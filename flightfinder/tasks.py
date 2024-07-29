@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 
 @app.task
 def cache_flights():
+    # print("Caching flights")
+    logger.debug("Caching flights")
     paths_to_cache = CachePath.objects.all()
     for path in paths_to_cache:
         # Iterate over the next 14 days
@@ -42,3 +44,6 @@ app.conf.beat_schedule = {
     },
 }
 app.conf.timezone = "UTC"
+
+# Manually trigger the task to run immediately
+cache_flights.apply_async()
