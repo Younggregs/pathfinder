@@ -33,10 +33,9 @@ class Merlin:
 
     def prepare_magic(self):
         """Get all journey paths"""
-        journey_paths = JourneyPath.objects.filter(
+        self.journey_paths = JourneyPath.objects.filter(
             origin__code=self.origin, destination__code=self.destination
         )
-        self.journey_paths = journey_paths
 
     def abracadabra(self):
         with concurrent.futures.ThreadPoolExecutor() as executor:

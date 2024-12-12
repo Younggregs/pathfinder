@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils import timezone
 
 
@@ -22,6 +22,9 @@ def formate_time_string_to_date(time_string, date_string):
 
     # Combine the date and time into a datetime object
     datetime_object = datetime.combine(date_object, parsed_time)
+
+    # The time is in GMT + 1, so we subtract 1 hour to make it GMT.
+    datetime_object = datetime_object - timedelta(hours=1)
 
     return timezone.make_aware(datetime_object)
 
