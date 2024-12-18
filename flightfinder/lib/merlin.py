@@ -1,5 +1,6 @@
 from datetime import date, datetime, time
 from flightfinder.lib.utils import (
+    STALE_FLIGHT_THRESHOLD,
     format_date_with_dash,
     formate_time_string_to_date,
     get_flights,
@@ -117,7 +118,11 @@ class Merlin:
         journey_path_ids = [path.id for path in self.journey_paths]
 
         flight_instances = Flight.objects.filter(
-            journey_path__in=journey_path_ids, date=format_date_with_dash(self.date)
+            journey_path__in=journey_path_ids,
+            date=format_date_with_dash(self.date),
+            created_at__gte=STALE_FLIGHT_THRESHOLD,
+        ).select_related(
+            "journey_path__origin", "journey_path__destination", "journey_path__airline"
         )
 
         return flight_instances

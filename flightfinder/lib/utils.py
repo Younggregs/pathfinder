@@ -34,3 +34,6 @@ def get_location_code(locations, name):
         if location["name"].upper() == name.upper():
             return location["code"]
     return None
+
+
+STALE_FLIGHT_THRESHOLD = timezone.now() - timedelta(hours=5)  # 5 hours

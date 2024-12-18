@@ -1,5 +1,5 @@
 from flightfinder.flights.types import ErrorType, FlightResponseType, FlightType
-from flightfinder.lib.utils import format_date_with_dash
+from flightfinder.lib.utils import STALE_FLIGHT_THRESHOLD, format_date_with_dash
 from flightfinder.models import Airport, Flight, JourneyPath
 import graphene
 
@@ -25,7 +25,11 @@ class GetFlightsMutation(graphene.Mutation):
         journey_paths_ids = [journey_path.id for journey_path in journey_paths]
 
         flight_instances = Flight.objects.filter(
-            journey_path__in=journey_paths_ids, date=format_date_with_dash(date)
+            journey_path__in=journey_paths_ids,
+            date=format_date_with_dash(date),
+            created_at__gte=STALE_FLIGHT_THRESHOLD,
+        ).select_related(
+            "journey_path__origin", "journey_path__destination", "journey_path__airline"
         )
 
         flights = [
