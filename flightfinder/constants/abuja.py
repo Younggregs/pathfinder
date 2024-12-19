@@ -12,6 +12,7 @@ ABUJA = [
             "rano_air",
             "united_nigeria",
             "value_jet",
+            "xejet",
         ],
     },
     {"name": "ACC", "airlines": ["air_peace"]},

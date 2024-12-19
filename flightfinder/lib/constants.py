@@ -18,6 +18,8 @@ MAX_URL = "https://customer2.videcom.com/MaxAir/VARS/Public/CustomerPanels/requi
 
 RANO_URL = "https://customer3.videcom.com/RanoAir/VARS/Public/CustomerPanels/requirementsBS.aspx"
 
+XEJET_URL = "https://booking.xejet.com/VARS/public/CustomerPanels/requirementsBS.aspx"
+
 LOCATIONS = [
     {"name": "Lagos", "code": "LOS"},
     {"name": "Abuja", "code": "ABV"},

@@ -16,6 +16,7 @@ from flightfinder.lib.rano import Rano
 from flightfinder.lib.unitednigeria import UnitedNigeria
 from flightfinder.lib.valuejet import ValueJet
 
+from flightfinder.lib.xejet import Xejet
 from flightfinder.models import Flight, JourneyPath
 
 from django.utils import timezone
@@ -144,6 +145,7 @@ class Merlin:
             "rano_air": Rano,
             "united_nigeria": UnitedNigeria,
             "value_jet": ValueJet,
+            "xejet": Xejet,
         }
 
         return airlines.get(slug, None)
